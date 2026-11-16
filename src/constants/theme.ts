@@ -1,65 +1,125 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
+export interface ColorTheme {
+  background: string;
+  surface: string;
+  surfaceElevated: string;
+  surfaceInput: string;
+  border: string;
+  borderHover: string;
+  borderFocus: string;
 
-import '@/global.css';
+  text: string;
+  textSecondary: string;
+  textMuted: string;
 
-import { Platform } from 'react-native';
+  // Accents
+  primary: string;
+  primaryGradientStart: string;
+  primaryGradientEnd: string;
+  primaryTint: string;
 
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
+  success: string;
+  successTint: string;
+  successBorder: string;
+
+  danger: string;
+  dangerTint: string;
+  dangerBorder: string;
+
+  accentGold: string;
+  accentGoldTint: string;
+
+  badgeBackground: string;
+  badgeText: string;
+}
+
+export const Colors: { dark: ColorTheme; light: ColorTheme } = {
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
-} as const;
+    background: '#0B0F19',
+    surface: '#131B2E',
+    surfaceElevated: '#1A243F',
+    surfaceInput: '#0E1526',
+    border: '#24304F',
+    borderHover: '#33436D',
+    borderFocus: '#3B82F6',
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+    text: '#FFFFFF',
+    textSecondary: '#94A3B8',
+    textMuted: '#64748B',
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
+    // Accents
+    primary: '#2563EB',
+    primaryGradientStart: '#3B82F6',
+    primaryGradientEnd: '#1D4ED8',
+    primaryTint: 'rgba(37, 99, 235, 0.15)',
+
+    success: '#10B981',
+    successTint: 'rgba(16, 185, 129, 0.12)',
+    successBorder: 'rgba(16, 185, 129, 0.3)',
+
+    danger: '#EF4444',
+    dangerTint: 'rgba(239, 68, 68, 0.12)',
+    dangerBorder: 'rgba(239, 68, 68, 0.3)',
+
+    accentGold: '#F59E0B',
+    accentGoldTint: 'rgba(245, 158, 11, 0.15)',
+
+    badgeBackground: '#1E293B',
+    badgeText: '#38BDF8',
   },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
+  light: {
+    background: '#F8FAFC',
+    surface: '#FFFFFF',
+    surfaceElevated: '#F1F5F9',
+    surfaceInput: '#FFFFFF',
+    border: '#E2E8F0',
+    borderHover: '#CBD5E1',
+    borderFocus: '#2563EB',
+
+    text: '#0F172A',
+    textSecondary: '#475569',
+    textMuted: '#94A3B8',
+
+    // Accents
+    primary: '#2563EB',
+    primaryGradientStart: '#3B82F6',
+    primaryGradientEnd: '#1D4ED8',
+    primaryTint: 'rgba(37, 99, 235, 0.08)',
+
+    success: '#059669',
+    successTint: 'rgba(5, 150, 105, 0.1)',
+    successBorder: 'rgba(5, 150, 105, 0.25)',
+
+    danger: '#DC2626',
+    dangerTint: 'rgba(220, 38, 38, 0.08)',
+    dangerBorder: 'rgba(220, 38, 38, 0.25)',
+
+    accentGold: '#D97706',
+    accentGoldTint: 'rgba(217, 119, 6, 0.12)',
+
+    badgeBackground: '#E0F2FE',
+    badgeText: '#0284C7',
   },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+};
+
+// Default theme reference for static / fallback contexts
+export const Theme: ColorTheme = Colors.dark;
 
 export const Spacing = {
-  half: 2,
-  one: 4,
-  two: 8,
-  three: 16,
-  four: 24,
-  five: 32,
-  six: 64,
+  xs: 4,
+  sm: 8,
+  md: 12,
+  lg: 16,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const BorderRadius = {
+  sm: 6,
+  md: 10,
+  lg: 14,
+  xl: 18,
+  round: 9999,
+} as const;
+
+export const MaxContentWidth = 600;
