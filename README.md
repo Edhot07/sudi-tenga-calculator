@@ -1,56 +1,88 @@
-# Welcome to your Expo app 👋
+# Sudi Tenga Calculator (Chakma Money Lending Calculator)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A production-ready mobile application designed for calculating traditional informal money lending interest in the Chakma financial system.
 
-## Get started
+---
 
-1. Install dependencies
+## 1. App Concept & Domain Context
 
-   ```bash
-   npm install
-   ```
+**"Sudi Tenga"** is a traditional informal money-lending calculation system:
+* **"Sudi" (সুদি)**: Interest
+* **"Tenga" (তেঙা)**: Money / Principal
+* **"Hoi tenga dor" (হই তেঙা দর)**: Interest rate per month (e.g., 10 tenga interest per 100 tenga principal each month)
 
-2. Start the app
+Unlike annual compound bank loans, this system calculates **monthly simple interest** based on a flat monthly percentage rate over a set number of months.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 2. Mathematical Formulas
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+* $P$ = Principal amount borrowed / lent (₹)
+* $R$ = Monthly interest rate percentage (%)
+* $M$ = Loan duration in months
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. **Monthly Interest**:
+   $$\text{Interest per Month} = P \times \left(\frac{R}{100}\right)$$
+2. **Total Accrued Interest**:
+   $$\text{Total Interest } (I) = \left(\frac{R}{100}\right) \times P \times M$$
+3. **Total Repayment Amount**:
+   $$\text{Total to Pay } (A) = P + I$$
 
-## Get a fresh project
+### Example:
+* Principal ($P$) = ₹10,000
+* Monthly Rate ($R$) = 10%
+* Duration ($M$) = 6 months
+* Total Interest ($I$) = ₹6,000
+* Total Repayment ($A$) = ₹16,000
 
-When you're ready, run:
+---
 
+## 3. Features & Architecture
+
+* **Dark-Mode-First Fintech UI**: High-contrast, elegant obsidian & electric blue aesthetic.
+* **Animated Result Card**:
+  - Smooth slide (`translateY: -20 -> 0`) and fade (`opacity: 0 -> 1`) animation.
+  - Green status indicator: *"Calculation Complete"*.
+  - Large highlighted total repayment amount.
+  - Two-column breakdown container: Principal & Total Interest.
+  - Metadata row with month pluralization and rate breakdown.
+  - *"New Calculation"* reset button.
+* **Loan Details Input Card**:
+  - Custom styled input fields with prefix (`₹`), suffix (`%`), and calendar icon.
+  - Active focus border styling.
+  - Quick preset chips for common rates (5%, 10%, 15%, 20%) and durations (1, 3, 6, 12 months).
+  - High-elevation "Calculate Total" primary button.
+* **Local Persistence & History**:
+  - Powered by `@react-native-async-storage/async-storage` under key `"sudiTengaHistory"`.
+  - FIFO eviction preserving the 50 most recent calculations.
+  - Tap any history entry to reload into the calculator.
+  - Delete individual entries or clear all with confirmation dialog.
+* **Resilience & Accessibility**:
+  - Comprehensive input validation ($P > 0, R \ge 0, M > 0$).
+  - Full Indian Numbering Format (`en-IN`) without unnecessary decimals: `₹10,000`.
+  - Wrapped in root `ErrorBoundary` to catch any runtime exceptions gracefully.
+  - Interactive "About Sudi Tenga" modal with glossary and formula references.
+
+---
+
+## 4. Getting Started
+
+### Prerequisites
+* Node.js (v18+)
+* npm or yarn
+
+### Installation
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+### Running the App
+* **Start Dev Server**: `npx expo start` or `npm start`
+* **Android**: `npm run android`
+* **iOS**: `npm run ios`
+* **Web**: `npm run web`
 
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Running the Logic Test Suite
+```bash
+npx tsx scripts/test-logic.ts
+```
