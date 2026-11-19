@@ -2,14 +2,23 @@
   "expo": {
     "name": "Sudi Tenga Calculator",
     "slug": "sudi-tenga-calculator",
+    "description": "Calculate monthly simple interest and total repayment for Chakma Sudi Tenga money lending, with local calculation history.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "suditengacalculator",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#0B0F19",
+    "primaryColor": "#2563EB",
+    "platforms": ["ios", "android", "web"],
     "ios": {
-      "icon": "./assets/images/icon.png"
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.edhot.suditengacalculator",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,12 +27,25 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false,
-      "package": "com.edhot.suditengacalculator"
+      "package": "com.edhot.suditengacalculator",
+      "versionCode": 1,
+      "allowBackup": false,
+      "softwareKeyboardLayoutMode": "resize",
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "Sudi Tenga Calculator",
+      "shortName": "Sudi Tenga",
+      "description": "Chakma monthly simple interest and total repayment calculator.",
+      "lang": "en",
+      "themeColor": "#0B0F19",
+      "backgroundColor": "#0B0F19",
+      "display": "standalone",
+      "orientation": "portrait",
+      "startUrl": "/",
+      "scope": "/"
     },
     "plugins": [
       "expo-router",
@@ -32,7 +54,12 @@
         {
           "backgroundColor": "#0B0F19",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 76,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#0B0F19",
+            "image": "./assets/images/splash-icon.png"
+          }
         }
       ]
     ],
