@@ -65,7 +65,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
             <Text style={styles.title}>Something went wrong</Text>
             <Text style={styles.subtitle}>
-              An unexpected error occurred in Sudi Tenga Calculator. Don't worry, your data is safe.
+              An unexpected error occurred in Sudi Tenga Calculator. Don&apos;t worry, your data is safe.
             </Text>
 
             {this.state.error?.message ? (

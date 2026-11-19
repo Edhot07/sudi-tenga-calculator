@@ -62,7 +62,7 @@ export function InfoModal({ visible, onClose }: InfoModalProps) {
             <View style={styles.section}>
               <Text style={styles.sectionHeading}>Traditional Concept</Text>
               <Text style={styles.paragraph}>
-                In the Chakma community, <Text style={styles.bold}>"Sudi Tenga"</Text> is a traditional informal money-lending calculation system. Unlike annual compound bank interest, this system operates on a monthly flat simple interest percentage.
+                In the Chakma community, <Text style={styles.bold}>&quot;Sudi Tenga&quot;</Text> is a traditional informal money-lending calculation system. Unlike annual compound bank interest, this system operates on a monthly flat simple interest percentage.
               </Text>
             </View>
 

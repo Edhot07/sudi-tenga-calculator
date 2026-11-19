@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   Animated,
   Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
+  useAnimatedValue,
   View,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -22,8 +23,8 @@ export function ResultCard({ result, onNewCalculation }: ResultCardProps) {
   const { theme, isDark } = useAppTheme();
   const styles = useMemo(() => getStyles(theme, isDark), [theme, isDark]);
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(-20)).current;
+  const fadeAnim = useAnimatedValue(0);
+  const slideAnim = useAnimatedValue(-20);
 
   useEffect(() => {
     if (result) {
@@ -44,7 +45,7 @@ export function ResultCard({ result, onNewCalculation }: ResultCardProps) {
         }),
       ]).start();
     }
-  }, [result]);
+  }, [result, fadeAnim, slideAnim]);
 
   if (!result) return null;
 
